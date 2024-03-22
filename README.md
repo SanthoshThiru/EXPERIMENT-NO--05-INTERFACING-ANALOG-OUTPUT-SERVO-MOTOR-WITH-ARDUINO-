@@ -1,8 +1,8 @@
-###  DATE: 
+###  DATE: 22-03-2024
 
-###  NAME: 
-###  ROLL NO :
-###  DEPARTMENT: 
+###  NAME: SANTHOSH.T
+###  ROLL NO : 212223220100
+###  DEPARTMENT: INFORMATION TECHNOLOGY
 
 
 # EXPERIMENT NO 05 INTERFACING ANALOG OUTPUT SERVO MOTOR WITH ARDUINO
@@ -60,6 +60,14 @@ CIRCUIT DIAGRAM
  ![image](https://user-images.githubusercontent.com/36288975/163544618-6eb8a7b5-7f1a-428a-8d9f-fd899b145efb.png)
 
 ### FIGURE 04 CIRCUIT DIAGRAM
+## When the Angle <= 100 :
+![image](https://github.com/SanthoshThiru/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/148958618/682de721-c59e-4646-a582-ec4feab7be7c)
+## When the Angle >= 180:
+![image](https://github.com/SanthoshThiru/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/148958618/06b003d3-e440-4218-aa99-4d62c661e690)
+### Schematic Diagram :
+![image](https://github.com/SanthoshThiru/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/148958618/c7a53856-1bc8-4f00-a371-07eda438fd55)
+### Serial Monitor:
+![image](https://github.com/SanthoshThiru/EXPERIMENT-NO--05-INTERFACING-ANALOG-OUTPUT-SERVO-MOTOR-WITH-ARDUINO-/assets/148958618/4bd15be2-1770-4758-9de5-ea8b2dd96c1a)
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -74,15 +82,51 @@ CIRCUIT DIAGRAM
 
 
 ### PROGRAM :
+ ```
+#include<Servo.h>
+Servo sr1;
+int pos=0;
+int red=9;
+int green=8;
+
+void setup()
+{
+sr1.attach(6);
+   Serial.begin(9600);
+	pinMode(red,OUTPUT);
+  	pinMode(green,OUTPUT);
+}
+void loop()
+{
+for(pos=0;pos<=180;pos+=5)
+{  sr1.write(pos);
+ 	delay(300);
+  Serial.println(pos);
+if(pos>120)
+    {
+    digitalWrite(red,HIGH);
+      delay(200);
+     digitalWrite(red,LOW);
+  delay(200);}
+}
+  
+for(pos=180;pos>=0;pos-=5)
+ { sr1.write(pos);
+  delay(300);
+  Serial.println(pos);
+  if(pos<=100)
+    {
+    digitalWrite(green,HIGH);
+      delay(200);
+     digitalWrite(green,LOW);
+      delay(200);
+
+    }
+
+ } 
  
-
-
-
-
-
-
-
-
-
+ 
+}
+```
 ### RESULTS: 
 Arduino uno interfacing with servo motor is learned and angular position is controlled using PWM signal.
